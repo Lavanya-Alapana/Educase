@@ -1,16 +1,108 @@
-# React + Vite
+# Educase - Modern Education Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Educase is a responsive web application built with React.js that provides a seamless user experience for educational purposes. The application features user authentication, profile management, and a clean, modern UI built with Tailwind CSS for styling.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **User Authentication**
+  - Secure login and registration
+  - Password visibility toggle
+  - Form validation
 
-## React Compiler
+- **User Interface**
+  - Responsive design for all devices
+  - Modern and clean UI with Tailwind CSS
+  - Intuitive navigation
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Pages**
+  - Landing page
+  - Login/Register forms
+  - User profile management
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend**
+  - React 19
+  - Vite (Build Tool)
+  - React Router v7
+  - React Icons
+  - Tailwind CSS
+
+- **Development Tools**
+  - ESLint (Code Linting)
+  - Vite (Fast Development Server)
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v16 or higher recommended)
+- npm (v8 or higher) or Yarn
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Lavanya-Alapana/Educase.git
+   cd Educase/frontend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+4. Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
+
+## 📁 Project Structure
+
+```
+frontend/
+├── public/              # Static assets
+├── src/
+│   ├── assets/          # Images, icons, etc.
+│   ├── components/      # Reusable UI components
+│   ├── screens/         # Page components
+│   │   ├── LandingScreen.jsx  # Landing page
+│   │   ├── LoginScreen.jsx    # Login page
+│   │   ├── SignupScreen.jsx   # Registration page
+│   │   └── ProfileScreen.jsx  # User profile page
+│   ├── App.jsx          # Main application component
+│   └── main.jsx         # Application entry point
+├── .gitignore
+├── package.json
+├── vite.config.js       # Vite configuration
+└── README.md
+```
+
+## 🎯 Available Scripts
+
+- `npm run dev` - Start the development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📬 Contact
+
+For any questions or feedback, please open an issue on the [GitHub repository](https://github.com/Lavanya-Alapana/Educase).
