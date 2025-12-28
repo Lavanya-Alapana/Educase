@@ -1,259 +1,178 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
-  Container, 
-  TextField, 
-  Button, 
-  Typography, 
-  Box,
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  FormLabel,
-  FormControl,
-  InputAdornment,
-  IconButton
-} from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 const SignupScreen = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [agency, setAgency] = useState('no');
+  const [formData, setFormData] = useState({
+    fullName: '',
+    phone: '',
+    email: '',
+    password: '',
+    companyName: '',
+    agency: 'no'
+  });
   const navigate = useNavigate();
 
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
-  const handleAgencyChange = (event) => {
-    setAgency(event.target.value);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission
+    console.log('Form submitted:', formData);
+    navigate('/profile');
   };
 
   return (
-    <Container maxWidth="sm" sx={{
-      height: 'auto',
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#f5f5f5',
-      padding: '20px',
-    }}>
-      <Box sx={{
-        backgroundColor: 'white',
-        padding: '30px',
-        borderRadius: '8px',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-        width: '100%',
-        maxWidth: '450px',
-        margin: '20px 0',
-      }}>
-        <Typography variant="h5" component="h1" gutterBottom sx={{ 
-          fontWeight: 'bold',
-          color: '#333',
-          marginBottom: '10px',
-        }}>
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100 p-4 sm:p-6">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-sm p-6 sm:p-8">
+        <h1 className="text-2xl font-bold text-gray-800 mb-2">
           Create your PopX account
-        </Typography>
+        </h1>
         
-        <Box component="form" noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="fullName"
-            label="Full Name"
-            name="fullName"
-            autoComplete="name"
-            autoFocus
-            variant="outlined"
-            sx={{
-              '& .MuiOutlinedInput-root': {
-                borderRadius: '6px',
-              },
-              '& .MuiInputLabel-root': {
-                color: '#6c25ff',
-              },
-              '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#6c25ff',
-              },
-              '& .MuiInputLabel-root.Mui-focused': {
-                color: '#6c25ff',
-              },
-              marginBottom: '15px',
-            }}
-          />
+        <p className="text-gray-600 mb-6">
+          Please provide your information to create an account
+        </p>
+        
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
+              Full Name <span className="text-red-500">*</span>
+            </label>
+            <input
+              id="fullName"
+              name="fullName"
+              type="text"
+              required
+              value={formData.fullName}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              placeholder="Enter full name"
+            />
+          </div>
           
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="phone"
-            label="Phone number"
-            name="phone"
-            autoComplete="tel"
-            variant="outlined"
-            sx={{
-              '& .MuiOutlinedInput-root': {
-                borderRadius: '6px',
-              },
-              '& .MuiInputLabel-root': {
-                color: '#6c25ff',
-              },
-              '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#6c25ff',
-              },
-              '& .MuiInputLabel-root.Mui-focused': {
-                color: '#6c25ff',
-              },
-              marginBottom: '15px',
-            }}
-          />
+          <div>
+            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+              Phone number <span className="text-red-500">*</span>
+            </label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              required
+              value={formData.phone}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              placeholder="Enter phone number"
+            />
+          </div>
           
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email address"
-            name="email"
-            autoComplete="email"
-            variant="outlined"
-            sx={{
-              '& .MuiOutlinedInput-root': {
-                borderRadius: '6px',
-              },
-              '& .MuiInputLabel-root': {
-                color: '#6c25ff',
-              },
-              '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#6c25ff',
-              },
-              '& .MuiInputLabel-root.Mui-focused': {
-                color: '#6c25ff',
-              },
-              marginBottom: '15px',
-            }}
-          />
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              Email address <span className="text-red-500">*</span>
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              placeholder="Enter email address"
+            />
+          </div>
           
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type={showPassword ? 'text' : 'password'}
-            id="password"
-            autoComplete="new-password"
-            variant="outlined"
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    edge="end"
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            sx={{
-              '& .MuiOutlinedInput-root': {
-                borderRadius: '6px',
-              },
-              '& .MuiInputLabel-root': {
-                color: '#6c25ff',
-              },
-              '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#6c25ff',
-              },
-              '& .MuiInputLabel-root.Mui-focused': {
-                color: '#6c25ff',
-              },
-              marginBottom: '15px',
-            }}
-          />
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              Password <span className="text-red-500">*</span>
+            </label>
+            <div className="relative">
+              <input
+                id="password"
+                name="password"
+                type={showPassword ? 'text' : 'password'}
+                required
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 pr-12"
+                placeholder="Enter password"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700"
+              >
+                {showPassword ? (
+                  <FiEyeOff className="h-5 w-5" />
+                ) : (
+                  <FiEye className="h-5 w-5" />
+                )}
+              </button>
+            </div>
+          </div>
           
-          <TextField
-            margin="normal"
-            fullWidth
-            id="company"
-            label="Company name"
-            name="company"
-            variant="outlined"
-            sx={{
-              '& .MuiOutlinedInput-root': {
-                borderRadius: '6px',
-              },
-              '& .MuiInputLabel-root': {
-                color: '#6c25ff',
-              },
-              '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#6c25ff',
-              },
-              '& .MuiInputLabel-root.Mui-focused': {
-                color: '#6c25ff',
-              },
-              marginBottom: '20px',
-            }}
-          />
+          <div>
+            <label htmlFor="companyName" className="block text-sm font-medium text-gray-700 mb-1">
+              Company name <span className="text-red-500">*</span>
+            </label>
+            <input
+              id="companyName"
+              name="companyName"
+              type="text"
+              required
+              value={formData.companyName}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              placeholder="Enter company name"
+            />
+          </div>
           
-          <FormControl component="fieldset" sx={{ width: '100%', mb: 3 }}>
-            <FormLabel component="legend" sx={{ 
-              color: '#6c25ff',
-              fontWeight: '500',
-              mb: 1,
-            }}>
-              Are you an Agency?
-            </FormLabel>
-            <RadioGroup
-              row
-              aria-label="agency"
-              name="row-radio-buttons-group"
-              value={agency}
-              onChange={handleAgencyChange}
-              sx={{
-                '& .MuiSvgIcon-root': {
-                  color: '#6c25ff',
-                },
-                '& .Mui-checked': {
-                  color: '#6c25ff',
-                },
-              }}
+          <div className="pt-2">
+            <p className="text-sm font-medium text-gray-700 mb-3">Are you an agency? <span className="text-red-500">*</span></p>
+            <div className="flex space-x-6">
+              <label className="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="agency"
+                  value="yes"
+                  checked={formData.agency === 'yes'}
+                  onChange={handleChange}
+                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
+                />
+                <span className="ml-2 text-gray-700">Yes</span>
+              </label>
+              <label className="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="agency"
+                  value="no"
+                  checked={formData.agency === 'no'}
+                  onChange={handleChange}
+                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
+                />
+                <span className="ml-2 text-gray-700">No</span>
+              </label>
+            </div>
+          </div>
+          
+          <div className="pt-4">
+            <button
+              type="submit"
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 px-4 rounded-md transition-colors duration-200"
             >
-              <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-              <FormControlLabel value="no" control={<Radio />} label="No" />
-            </RadioGroup>
-          </FormControl>
-          
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{
-              mt: 1,
-              mb: 2,
-              backgroundColor: '#6c25ff',
-              color: 'white',
-              padding: '12px',
-              textTransform: 'none',
-              fontSize: '16px',
-              fontWeight: 'bold',
-              borderRadius: '6px',
-              '&:hover': {
-                backgroundColor: '#5c1de8',
-              },
-            }}
-            onClick={() => navigate('/profile')}
-          >
-            Create Account
-          </Button>
-        </Box>
-      </Box>
-    </Container>
+              Create Account
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 

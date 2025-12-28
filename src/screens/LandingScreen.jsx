@@ -1,84 +1,35 @@
-import { Button, Container, Typography, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 const LandingScreen = () => {
   const navigate = useNavigate();
 
   return (
-    <Container maxWidth="sm" sx={{
-      height: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      textAlign: 'center',
-      backgroundColor: '#f5f5f5',
-      padding: '20px',
-    }}>
-      <Box sx={{
-        backgroundColor: 'white',
-        padding: '40px',
-        borderRadius: '8px',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-        width: '100%',
-        maxWidth: '450px',
-      }}>
-        <Typography variant="h4" component="h1" gutterBottom sx={{ 
-          fontWeight: 'bold',
-          color: '#333',
-          marginBottom: '20px',
-        }}>
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100 p-4 sm:p-6">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-sm p-6 sm:p-10 text-center">
+        <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-5 leading-tight">
           Welcome to PopX
-        </Typography>
+        </h1>
         
-        <Typography variant="body1" color="textSecondary" sx={{ 
-          marginBottom: '40px',
-          color: '#666',
-        }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-        </Typography>
+        <p className="text-gray-600 mb-8 sm:mb-10 text-base sm:text-lg leading-relaxed">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua.
+        </p>
         
-        <Button 
-          variant="contained" 
-          fullWidth 
-          sx={{
-            backgroundColor: '#6c25ff',
-            padding: '12px',
-            marginBottom: '15px',
-            textTransform: 'none',
-            fontSize: '16px',
-            fontWeight: 'bold',
-            borderRadius: '6px',
-            '&:hover': {
-              backgroundColor: '#5c1de8',
-            },
-          }}
+        <button
           onClick={() => navigate('/signup')}
+          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-md transition-colors duration-200 mb-4"
         >
           Create Account
-        </Button>
+        </button>
         
-        <Button 
-          variant="contained" 
-          fullWidth 
-          sx={{
-            backgroundColor: '#cebafb',
-            color: 'white',
-            padding: '12px',
-            textTransform: 'none',
-            fontSize: '16px',
-            fontWeight: 'bold',
-            borderRadius: '6px',
-            '&:hover': {
-              backgroundColor: '#b8a4e6',
-            },
-          }}
+        <button
           onClick={() => navigate('/login')}
+          className="w-full bg-indigo-300 hover:bg-indigo-400 text-white font-bold py-3 px-4 rounded-md transition-colors duration-200"
         >
           Already Registered? Login
-        </Button>
-      </Box>
-    </Container>
+        </button>
+      </div>
+    </div>
   );
 };
 

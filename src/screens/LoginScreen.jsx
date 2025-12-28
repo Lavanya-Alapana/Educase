@@ -1,149 +1,90 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
-  Container, 
-  TextField, 
-  Button, 
-  Typography, 
-  Box,
-  InputAdornment,
-  IconButton
-} from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 const LoginScreen = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle login logic here
+    console.log('Login submitted', { email, password });
   };
 
   return (
-    <Container maxWidth="sm" sx={{
-      height: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#f5f5f5',
-      padding: '20px',
-    }}>
-      <Box sx={{
-        backgroundColor: 'white',
-        padding: '40px',
-        borderRadius: '8px',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-        width: '100%',
-        maxWidth: '450px',
-      }}>
-        <Typography variant="h5" component="h1" gutterBottom sx={{ 
-          fontWeight: 'bold',
-          color: '#333',
-          marginBottom: '10px',
-        }}>
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100 p-4 sm:p-6">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-sm p-8 sm:p-10">
+        <h1 className="text-2xl font-bold text-gray-800 mb-2">
           Sign in to your PopX account
-        </Typography>
+        </h1>
         
-        <Typography variant="body2" color="textSecondary" sx={{ 
-          marginBottom: '30px',
-          color: '#666',
-        }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-        </Typography>
-        
-        <Box component="form" noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            variant="outlined"
-            sx={{
-              '& .MuiOutlinedInput-root': {
-                borderRadius: '6px',
-              },
-              '& .MuiInputLabel-root': {
-                color: '#6c25ff',
-              },
-              '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#6c25ff',
-              },
-              '& .MuiInputLabel-root.Mui-focused': {
-                color: '#6c25ff',
-              },
-              marginBottom: '20px',
-            }}
-          />
-          
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type={showPassword ? 'text' : 'password'}
-            id="password"
-            autoComplete="current-password"
-            variant="outlined"
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    edge="end"
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            sx={{
-              '& .MuiOutlinedInput-root': {
-                borderRadius: '6px',
-              },
-              '& .MuiInputLabel-root': {
-                color: '#6c25ff',
-              },
-              '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#6c25ff',
-              },
-              '& .MuiInputLabel-root.Mui-focused': {
-                color: '#6c25ff',
-              },
-              marginBottom: '30px',
-            }}
-          />
-          
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{
-              mt: 3,
-              mb: 2,
-              backgroundColor: '#cbcbcb',
-              color: 'white',
-              padding: '12px',
-              textTransform: 'none',
-              fontSize: '16px',
-              fontWeight: 'bold',
-              borderRadius: '6px',
-              '&:hover': {
-                backgroundColor: '#b0b0b0',
-              },
-            }}
-          >
-            Login
-          </Button>
-        </Box>
-      </Box>
-    </Container>
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+          <div className="rounded-md shadow-sm -space-y-px">
+            <div>
+              <label htmlFor="email-address" className="sr-only">Email address</label>
+              <input
+                id="email-address"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Email address"
+              />
+            </div>
+            <div>
+              <label htmlFor="password" className="sr-only">Password</label>
+              <div className="relative">
+                <input
+                  id="password"
+                  name="password"
+                  type={showPassword ? 'text' : 'password'}
+                  autoComplete="current-password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Password"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700"
+                >
+                  {showPassword ? (
+                    <FiEyeOff className="h-5 w-5" />
+                  ) : (
+                    <FiEye className="h-5 w-5" />
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Login
+            </button>
+          </div>
+          <div className="text-center mt-4">
+            <button
+              type="button"
+              onClick={() => navigate('/forgot-password')}
+              className="text-indigo-600 hover:text-indigo-800 font-medium text-sm"
+            >
+              Forgot Password?
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 

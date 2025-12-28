@@ -1,116 +1,58 @@
-import { Avatar, Box, Button, Container, Typography, Divider } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom';
+import { FiEdit, FiLogOut } from 'react-icons/fi';
 
 const ProfileScreen = () => {
   const navigate = useNavigate();
 
   return (
-    <Container maxWidth="sm" sx={{
-      height: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#f5f5f5',
-      padding: '20px',
-    }}>
-      <Box sx={{
-        backgroundColor: 'white',
-        padding: '30px',
-        borderRadius: '8px',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-        width: '100%',
-        maxWidth: '450px',
-      }}>
-        <Typography variant="h5" component="h1" gutterBottom sx={{ 
-          fontWeight: 'bold',
-          color: '#333',
-          marginBottom: '30px',
-          textAlign: 'center',
-        }}>
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100 p-4 sm:p-6">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-sm p-6 sm:p-8">
+        <h1 className="text-2xl font-bold text-gray-800 mb-6 text-left w-full">
           Account Settings
-        </Typography>
+        </h1>
         
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 3 }}>
-          <Box sx={{ position: 'relative', mb: 2 }}>
-            <Avatar 
-              alt="User Avatar" 
-              src="/avatar-placeholder.png" 
-              sx={{ 
-                width: 100, 
-                height: 100,
-                bgcolor: '#6c25ff',
-                fontSize: '2.5rem',
-              }}
-            >
+        <div className="flex mb-6 w-full">
+          {/* Left side - Avatar */}
+          <div className="relative mr-4">
+            <div className="w-20 h-20 rounded-full bg-indigo-600 flex items-center justify-center text-white text-2xl font-bold">
               MD
-            </Avatar>
-            <Box
-              sx={{
-                position: 'absolute',
-                bottom: 0,
-                right: 0,
-                backgroundColor: '#6c25ff',
-                borderRadius: '50%',
-                width: 32,
-                height: 32,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'white',
-                cursor: 'pointer',
-                border: '2px solid white',
-              }}
+            </div>
+            <button
+              className="absolute -bottom-1 -right-1 bg-white p-1.5 rounded-full border border-gray-200 shadow-sm hover:bg-gray-50 transition-colors"
+              onClick={() => console.log('Edit photo')}
             >
-              <EditIcon fontSize="small" />
-            </Box>
-          </Box>
+              <FiEdit className="h-4 w-4 text-indigo-600" />
+            </button>
+          </div>
           
-          <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#333', mt: 1 }}>
-            Marry Doe
-          </Typography>
-          
-          <Typography variant="body2" color="textSecondary" sx={{ color: '#666', mb: 3 }}>
-            Marry@Gmail.Com
-          </Typography>
-          
-          <Typography variant="body2" color="textSecondary" sx={{ 
-            color: '#666',
-            textAlign: 'center',
-            mb: 3,
-            lineHeight: 1.6,
-          }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
-            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </Typography>
-          
-          <Divider sx={{ width: '100%', my: 2, borderStyle: 'dashed' }} />
-          
-          <Button
-            fullWidth
-            variant="contained"
-            sx={{
-              mt: 2,
-              backgroundColor: '#6c25ff',
-              color: 'white',
-              padding: '12px',
-              textTransform: 'none',
-              fontSize: '16px',
-              fontWeight: 'bold',
-              borderRadius: '6px',
-              '&:hover': {
-                backgroundColor: '#5c1de8',
-              },
-            }}
-            onClick={() => navigate('/')}
-          >
-            Logout
-          </Button>
-        </Box>
-      </Box>
-    </Container>
+          {/* Right side - User Info */}
+          <div className="flex-1 flex flex-col justify-center">
+            <h2 className="font-bold text-lg text-gray-800">Michael Davis</h2>
+            <p className="text-sm text-gray-600">michael.davis@example.com</p>
+          </div>
+        </div>
+        
+        <div className="border-t border-gray-200 my-4"></div>
+        
+        {/* Content Section */}
+        <div className="mb-6">
+          <p className="text-sm text-gray-600 mb-4">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+        </div>
+        
+        <div className="border-t border-gray-200 my-4"></div>
+        
+        {/* Logout Button */}
+        <button
+          onClick={() => navigate('/login')}
+          className="w-full flex items-center justify-center gap-2 py-2.5 px-4 border-2 border-indigo-600 text-indigo-600 font-bold rounded-md hover:bg-indigo-50 transition-colors"
+        >
+          <FiLogOut className="h-5 w-5" />
+          Logout
+        </button>
+      </div>
+    </div>
   );
 };
 
